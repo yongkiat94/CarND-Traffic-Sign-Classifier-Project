@@ -17951,51 +17951,56 @@ Model saved
 
 <span class="k">def</span> <span class="nf">VGG_16</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>    
     
-    <span class="c1"># SOLUTION: Layer 1: Convolutional. Input = 32x32x3. Output = 32x32x64.</span>
+    <span class="c1"># Layer 1: Convolutional.</span>
+    <span class="c1"># Input = 32x32x3. Output = 32x32x64.</span>
     <span class="n">conv1_W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;conv1_W&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="n">initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">xavier_initializer</span><span class="p">())</span>
     <span class="n">conv1_b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">64</span><span class="p">))</span>
     <span class="n">conv1</span>   <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">conv1_W</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">conv1_b</span>
 
-    <span class="c1"># SOLUTION: Activation.</span>
+    <span class="c1"># Activation.</span>
     <span class="n">conv1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv1</span><span class="p">)</span>
 
-    <span class="c1"># SOLUTION: Pooling. Input = 32x32x64. Output = 16x16x64.</span>
+    <span class="c1"># Pooling.</span>
+    <span class="c1"># Input = 32x32x64. Output = 16x16x64.</span>
     <span class="n">conv1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">(</span><span class="n">conv1</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;VALID&#39;</span><span class="p">)</span>
-    
-    <span class="c1"># Dropout</span>
-    <span class="c1"># conv1 = tf.nn.dropout(conv1, p)</span>
 
-    <span class="c1"># SOLUTION: Layer 2: Convolutional. Input = 16x16x64. Output = 16x16x128.</span>
+    <span class="c1"># Layer 2: Convolutional.</span>
+    <span class="c1"># Input = 16x16x64. Output = 16x16x128.</span>
     <span class="n">conv2_W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;conv2_W&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span> <span class="n">initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">xavier_initializer</span><span class="p">())</span>
     <span class="n">conv2_b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">128</span><span class="p">))</span>
     <span class="n">conv2</span>   <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">conv1</span><span class="p">,</span> <span class="n">conv2_W</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">conv2_b</span>
     
-    <span class="c1"># SOLUTION: Activation.</span>
+    <span class="c1"># Activation.</span>
     <span class="n">conv2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2</span><span class="p">)</span>
 
-    <span class="c1"># SOLUTION: Pooling. Input = 16x16x128. Output = 8x8x128.</span>
+    <span class="c1"># Pooling.</span>
+    <span class="c1"># Input = 16x16x128. Output = 8x8x128.</span>
     <span class="n">conv2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">(</span><span class="n">conv2</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;VALID&#39;</span><span class="p">)</span>
 
-    <span class="c1"># SOLUTION: Flatten. Input = 8x8x128. Output = 8192.</span>
+    <span class="c1"># Flatten.</span>
+    <span class="c1"># Input = 8x8x128. Output = 8192.</span>
     <span class="n">fc0</span>   <span class="o">=</span> <span class="n">flatten</span><span class="p">(</span><span class="n">conv2</span><span class="p">)</span>
     
-    <span class="c1"># SOLUTION: Layer 3: Fully Connected. Input = 8192. Output = 4096.</span>
+    <span class="c1"># Layer 3: Fully Connected.</span>
+    <span class="c1"># Input = 8192. Output = 4096.</span>
     <span class="n">fc1_W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;fc1_W&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">8192</span><span class="p">,</span> <span class="mi">4096</span><span class="p">),</span> <span class="n">initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">xavier_initializer</span><span class="p">())</span>
     <span class="n">fc1_b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4096</span><span class="p">))</span>
     <span class="n">fc1</span>   <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">fc0</span><span class="p">,</span> <span class="n">fc1_W</span><span class="p">)</span> <span class="o">+</span> <span class="n">fc1_b</span>
     
-    <span class="c1"># SOLUTION: Activation.</span>
+    <span class="c1"># Activation.</span>
     <span class="n">fc1</span>    <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">fc1</span><span class="p">)</span>
 
-    <span class="c1"># SOLUTION: Layer 4: Fully Connected. Input = 4096. Output = 4096.</span>
+    <span class="c1"># Layer 4: Fully Connected.</span>
+    <span class="c1"># Input = 4096. Output = 4096.</span>
     <span class="n">fc2_W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;fc2_W&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">4096</span><span class="p">,</span> <span class="mi">4096</span><span class="p">),</span> <span class="n">initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">xavier_initializer</span><span class="p">())</span>
     <span class="n">fc2_b</span>  <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4096</span><span class="p">))</span>
     <span class="n">fc2</span>    <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">fc1</span><span class="p">,</span> <span class="n">fc2_W</span><span class="p">)</span> <span class="o">+</span> <span class="n">fc2_b</span>
     
-    <span class="c1"># SOLUTION: Activation.</span>
+    <span class="c1"># Activation.</span>
     <span class="n">fc2</span>    <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">fc2</span><span class="p">)</span>
 
-    <span class="c1"># SOLUTION: Layer 5: Fully Connected. Input = 4096. Output = 43.</span>
+    <span class="c1"># Layer 5: Fully Connected.</span>
+    <span class="c1"># Input = 4096. Output = 43.</span>
     <span class="n">fc3_W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;fc3_W&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">4096</span><span class="p">,</span> <span class="mi">43</span><span class="p">),</span> <span class="n">initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">xavier_initializer</span><span class="p">())</span>
     <span class="n">fc3_b</span>  <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">43</span><span class="p">))</span>
     <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">fc2</span><span class="p">,</span> <span class="n">fc3_W</span><span class="p">)</span> <span class="o">+</span> <span class="n">fc3_b</span>
@@ -18237,7 +18242,7 @@ Model saved
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I preprocessed the data by using histogram equalization and then recale all images intensity to values between -0.5 to 0.5. Histogram equalization will take away the effect of brightness variation.</p>
+<p>I preprocessed the data by using histogram equalization and then recale all images intensity to values between -0.5 to 0.5. Histogram equalization will take away the effect of brightness variation and zero-centering the image will allow easier optimization.</p>
 
 </div>
 </div>
@@ -18267,7 +18272,7 @@ Model saved
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I split the given training data into training and validation set (77.77% for training and 33.33% for validation). Addition data are generated so that the distribution of the categories is the same. Data are being generated by randomly selecting images from training set and randomly rotating, shearing, and translating it. This will make the parameter of bias for all categories to be about the same.</p>
+<p>I split the given training data into training and validation set (77.77% for training and 33.33% for validation). Addition data are generated so that the distribution of the categories is the same. Data are being generated by randomly selecting images from training set and randomly rotating, shearing, and translating it. This will make the parameter of bias for all categories to be about the same. The images taken are not all at a perfect angle and therefore there are random rotation, shearing, and translation which explains why i used this approach for generating new data. This will allow deep learning to identify images even when it is rotated, sheared, or translated.</p>
 
 </div>
 </div>
@@ -18297,7 +18302,8 @@ Model saved
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The final architecture is the LeNet architecture. There is no dropout as it led to poorer performance (0.5 probability of keeping).</p>
+<p>The final architecture is the LeNet architecture. There is no dropout as it led to poorer performance (0.5 probability of keeping). The architecture has 5 layers. The first layer is convolved with 6 filters of kernel size 5, passed through relu activation, and then max pooling with kernel size of 2. The second layer is the same as first layer except that it has 16 filter.
+At the end of layer 2, the output is being flatten to be input into the fully connected layer. Layer 3 takes in 400 values as input and output 120 values for the next layer. Layer 4 takes in 120 values as input and output 84 values for the last layer. Layer 5 takes in 84 values as input and output 43 values (number of categories) as logits.</p>
 
 </div>
 </div>
@@ -18357,7 +18363,7 @@ Model saved
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I used the LeNet architecture on the original data as a benchmark and try different data preprocessing to improve the accuracy. I also tried VGGNet on the preprocessed data and got poorer performance (1% lower test accuracy) as compared to LeNet. The given problem has only 43 categories and it might explain why LeNet (shallower) performs better than VGGNet. One thing that i could have tried is to apply dropout on the VGGNet to reduce overfitting.</p>
+<p>I used the LeNet architecture on the original data as a benchmark and try different data preprocessing to improve the accuracy. I also tried VGGNet on the preprocessed data and got poorer performance (4% lower test accuracy) as compared to LeNet. The given problem has only 43 categories and it might explain why LeNet (shallower) performs better than VGGNet. One thing that i could have tried is to apply dropout on the VGGNet to reduce overfitting. As for LeNet, i tried applying dropout but i got poorer performance probably because it is a shallow network and using dropout probably make it underfit the data.</p>
 
 </div>
 </div>
