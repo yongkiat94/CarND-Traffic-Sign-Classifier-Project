@@ -28,6 +28,31 @@ Additional data are being generated from the original ones by randomly rotating,
 - Layer 5: Fully Connected
   - 43 neurons
 
+Validation Accuracy = 0.986
+Test Accuracy = 0.930
+
+#### VGG16 Net
+- Layer 1: Convolutional
+  - 64 3x3 filters
+  - relu activation
+  - 2x2 max pooling
+- Layer 2: Convolutional
+  - 128 3x3 filters
+  - relu activation
+  - 2x2 max pooling
+  - flatten
+- Layer 3: Fully Connected
+  - 4096 neurons
+  - relu activation
+- Layer 4: Fully Connected
+  - 4096 neurons
+  - relu activation
+- Layer 5: Fully Connected
+  - 43 neurons
+
+Validation Accuracy = 0.997
+Test Accuracy = 0.953
+
 ---
 ### Dependencies
 
