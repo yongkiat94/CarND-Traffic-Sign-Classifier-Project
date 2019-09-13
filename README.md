@@ -28,8 +28,7 @@ Additional data are being generated from the original ones by randomly rotating,
 - Layer 5: Fully Connected
   - 43 neurons
 
-Validation Accuracy = 0.986
-Test Accuracy = 0.930
+Validation Accuracy = 0.986, Test Accuracy = 0.930
 
 #### VGG16 Net
 - Layer 1: Convolutional
@@ -50,8 +49,7 @@ Test Accuracy = 0.930
 - Layer 5: Fully Connected
   - 43 neurons
 
-Validation Accuracy = 0.997
-Test Accuracy = 0.953
+Validation Accuracy = 0.997, Test Accuracy = 0.953
 
 ---
 ### Dependencies
